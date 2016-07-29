@@ -9,7 +9,7 @@ best <- function(state, outcome) {
   checkState <- unique(outcomeCSV[,7])
   
   if (! (state %in% checkState)) stop("invalid state")
-  ## Colonne 7 c'est le state
+  ## Col 7 is State
   outcomeCSV <- subset(outcomeCSV, outcomeCSV[,7]==state)
   
   ## 2 = name, 7 = state, 11 = H Attack, 17 = H Failure, 23 = Pneumonia
@@ -18,10 +18,10 @@ best <- function(state, outcome) {
         else if (outcome=="pneumonia")  {outcomeCSV[,c(2,23)]}
         else stop("invalid outcome")
   
-  ## on dégage les NA
+  ## it clears the NA
   suppressWarnings( x[,2]<-as.numeric(x[,2]) )
   x<-subset(x,!is.na(x[,2]))
   
-  ## le premier ,1 retourne la première colonne, le deuxième ,1 fait porter le head sur la première ligne  
+  ## the first one returns the first column , the second one is wearing the head on the first line  
   return(head(x[order(x[,2],x[,1]),1],1))
 }
